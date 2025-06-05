@@ -1,0 +1,57 @@
+\documentclass[twoside,12pt]{book}
+
+%% for math:
+\usepackage{amsmath}
+\usepackage{amsthm}	
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{wasysym}  %% 该包使得\Diamond，\Box比较好看，更敦厚些
+\usepackage{stmaryrd} 
+
+
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{url} 
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=green,      
+	urlcolor=brown,
+	citecolor=cyan,
+}
+
+
+\usepackage[inner=3cm, outer=3cm]{geometry} % 增大外侧边距
+%% 行距、段距设置
+% \linespread{1.2}     % 设置基本行距。
+    %% article 文档类的默认是1，即1.2倍字号大小；
+    %% ctexart 文档类的默认是1.3，即1.56倍字号大小。
+\setlength\parskip{6pt}   % 段间距
+
+
+\newcommand{\origpage}[1]{%
+%   \marginpar{\color{magenta}\small #1}% 右侧边注
+  \marginpar[\raggedleft\color{magenta}\small #1]{\color{magenta}\small #1} 
+}
+
+
+
+
+%%=============================================================================
+\begin{document}
+
+
+\tableofcontents
+\thispagestyle{empty} % 在标题页后使用
+
+
+
+\include{chapter/ch-intro}
+\include{chapter/ch-1}
+
+\include{chapter/ch-8}
+
+
+\end{document}

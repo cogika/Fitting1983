@@ -1,0 +1,259 @@
+\chapter{Background}
+
+
+\origpage{11}
+
+%%-------------------------------------
+\section{Propositional Formulas}\label{sec:1-1}
+
+
+We define the language common to all the propositional modal logics we will be considering.
+% 
+(Notation varies from book to book, by the way.)
+
+
+
+We begin by specifying our \underline{\textit{alphabet}}.
+\begin{enumerate}[itemsep=5pt,parsep=5pt,leftmargin=3em,topsep=5pt,label=\arabic*)] %% or label = \alph*, \roman*
+    \item 
+    We assume we have the following propositional connectives, modal operators, and logical constants:
+    \begin{center}
+        \renewcommand{\arraystretch}{1.3} % 行距
+        \renewcommand{\arraycolsep}{1.2em} % 列距
+    \begin{tabular}{ll}
+        $\land$ & (and) \\
+        $\lor$ & (or) \\
+        $\lnot$ & (not) \\
+        $\supset$ & (implies) \\  
+        $\Box$ & (necessary) \\
+        $\Diamond$ & (possible) \\
+        $\bot$ & (falsehood) \\
+        $\top$ & (truth-hood) \\
+    \end{tabular}
+    \end{center}
+
+    \item 
+    We suppose we have an infinite supply of \underline{\textit{propositional variables}}.
+    % 
+    If the reader chooses to understand this as meaning a \underline{\textit{countable list}}, 
+    we have no objection, 
+    though all our results hold for languages of arbitrary cardinality.
+
+
+
+    We use ``$P$'', ``$Q$'', ``$R$'', $\dots$ to stand for propositional variables.
+    % 
+    Until we get to quantifiers in Chapter 7[][],
+    ``variable'' will mean propositional variable.
+
+
+    \item 
+    We have left and right parentheses, as punctuation symbols.
+\end{enumerate}
+% 
+This completes our alphabet.
+
+
+\origpage{12}
+By an atomic formula we mean any variable, $\bot$ or $\top$.
+
+
+
+The notion of \underline{\textit{formula}} is given by the following four recursive rules:
+\begin{enumerate}[itemsep=5pt,parsep=5pt,leftmargin=3em,topsep=5pt,label=\arabic*)] %% or label = \alph*, \roman*
+    \item Any atomic formula is a formula.
+
+    \item If $A$ is a formula, so is $\neg A$.
+
+    \item If $A$ and $B$ are formulas, so are $(A \land B)$, $(A \lor B)$, $(A \supset B)$.
+
+    \item If $A$ is a formula, so are $\Box A, \Diamond A$.
+\end{enumerate}
+
+
+For this definition of formula, 
+a \underline{\textit{unique decomposition theorem}} can be shown.
+% 
+It says that for every formula $X$,
+exactly one of the following holds:
+\begin{enumerate}[itemsep=5pt,parsep=5pt,leftmargin=3em,topsep=5pt,label=\arabic*)] %% or label = \alph*, \roman*
+    \item $X$ is atomic,
+
+    \item there is a \underline{\textit{unique}} formula $Y$ and a \underline{\textit{unique}} symbol $S$ from the list $\neg,\Box,\Diamond$ such that $X = SY$,
+
+    \item there are \underline{\textit{unique}} formulas $Y$ and $Z$ and a \underline{\textit{unique}} connective $B$ chosen from the list $\land,\lor,\supset$ such that $X = (YBZ)$.
+\end{enumerate}
+
+
+
+
+
+
+We do not prove this here, 
+but we make use of it many times, 
+without explicit mention.
+
+
+
+We define the notion of \underline{\textit{immediate subformula}} as follows:
+\begin{enumerate}[itemsep=5pt,parsep=5pt,leftmargin=3em,topsep=5pt,label=(\arabic*)] %% or label = \alph*, \roman*
+    \item Atomic formulas have no immediate subformulas.
+
+    \item $X$ is an immediate subformula of $\neg X$, $\Box X$ and $\Diamond X$.
+
+    \item $X$ and $Y$ are immediate sub formulas of $(X \land Y)$, $(X \lor Y)$, and $(X \supset Y)$.
+\end{enumerate}
+
+
+The \textit{proper-subformula-of} relation is the transitive closure of the immediate-subformula-of relation.
+% 
+That is,
+for formulas $X$ and $Y$, 
+$X$ is a proper subformula of $Y$ if there is a sequence, 
+beginning with $X$, ending with $Y$, 
+and in which each term is an immediate subformula of the next.
+
+
+\origpage{13}
+By a \textit{subformula} of $X$ we mean any proper subformula of $X$, or $X$ itself.
+
+
+By the \textit{degree} of a formula we mean the number of occurrences of the symbols $\land,\lor,\supset,\neg,\Box,\Diamond$ it contains.
+% 
+We will often prove things about formulas by doing an induction on their degrees. 
+% 
+Note that the degree of any proper subformula of $X$ must be less than the degree of $X$.
+% 
+This is the central fact upon which all such induction arguments are based.
+
+
+
+Generally, 
+when displaying formulas, 
+we will abbreviate them by leaving off the outermost parentheses.
+% 
+Also we will use square and curly brackets as notational variants of parentheses, 
+to make reading easier.
+
+
+
+\paragraph{Concluding Note:}
+
+As an alternative to the above, 
+we could have defined \textit{formulas} as follows.
+% 
+Let $\mathbb{W}$ be the set of all words (finite strings) over our alphabet. 
+% 
+% 
+If \rotatebox[origin=c]{180}{$\pitchfork$} is a map from the power set of $\mathbb{W}$ to itself, 
+\rotatebox[origin=c]{180}{$\pitchfork$} is called an operator on $\mathbb{W}$.\footnote{
+    [][] Although I know the symbol $\rotatebox[origin=c]{180}{$\pitchfork$}$ maybe $\psi$ in Fitting's original book, 
+    but that symbol is pretty cool!
+}
+% 
+Now, 
+let $\Phi$ be the following particular operator on $\mathbb{W}$:
+
+For a set of words $\mathbb{P}$,
+$\Phi(\mathbb{P})$ is the set consisting of:
+\begin{enumerate}[itemsep=5pt,parsep=5pt,leftmargin=3em,topsep=5pt,label=(\arabic*)] %% or label = \alph*, \roman*
+    \item all atomic formulas,
+
+    \item $\neg X,\Box X$ and $\Diamond X$ for all $X \in \mathbb{P}$, 
+
+    \item $(X \land Y)$, $(X \lor Y)$ and $(X \supset Y)$ for all $X,Y \in \mathbb{P}$.
+\end{enumerate}
+This operator is \textit{monotone}, 
+that is,
+\[
+    \mathbb{P} \subseteq \mathbb{Q} 
+    \quad\Longrightarrow\quad
+    \Phi(\mathbb{P}) \subseteq \Phi(\mathbb{Q}).
+\]
+
+
+It is a general fact that monotone operators always possess \textit{smallest fixed points}.
+% 
+Well, 
+the set of formulas is the smallest fixed point of the operator $\Phi$  constructed above. 
+% 
+That is, 
+the set of formulas is that set $\mathbb{F}$ such that
+\origpage{14}
+\[
+    \Phi(\mathbb{F}) = \mathbb{F} 
+    \qquad
+    \text{and} 
+    \qquad 
+    \Phi(\mathbb{P}) = \mathbb{P} ~~\Longrightarrow~~ \mathbb{F} \subseteq \mathbb{P}.
+\]
+
+
+Of course this amounts to saying the set of formulas is the smallest set $\mathbb{F}$ containing the atomic formulas and closed under the operations 
+\begin{enumerate}[itemsep=5pt,parsep=5pt,leftmargin=3em,topsep=5pt,label=\arabic*)] %% or label = \alph*, \roman*
+    \item  
+    if $X \in \mathbb{F}$ then $\neg X$, $\Box X$ and $\Diamond X$ are in $\mathbb{F}$.
+
+    \item 
+    if $X,Y \in \mathbb{F}$ then $(X \land Y)$, $(X \lor Y)$ and $(X \supset Y)$ are in $\mathbb{F}$.
+\end{enumerate}
+
+
+
+It is also a general fact that one can prove things about the members of the smallest fixed point of a monotone operator by a kind of generalized induction, as follows.
+% 
+Suppose \rotatebox[origin=c]{180}{$\pitchfork$} is a monotone operator, 
+and suppose that whenever all the members of $\mathbb{R}$ have property $P$, 
+so do all the members of \rotatebox[origin=c]{180}{$\pitchfork$}($\mathbb{R}$).
+% 
+Then every member of the smallest fixed point $\mathbb{F}$ of \rotatebox[origin=c]{180}{$\pitchfork$} will have property $P$.
+%
+%  
+For particular operator $\Phi$ defined above, 
+this means we can show every formula has a property $P$ provided we can show 
+\begin{enumerate}[itemsep=5pt,parsep=5pt,leftmargin=3em,topsep=5pt,label=(\arabic*)] %% or label = \alph*, \roman*
+    \item every atomic formula has property $P$,
+
+    \item if $X$ has property $P$, so do $\neg X$, $\Box X$, and $\Diamond X$,
+
+    \item if $X$ and $Y$ have property $P$, so do $(X \land Y)$, $(X \lor Y)$, and $(X \supset Y)$.
+\end{enumerate}
+
+
+As a matter of fact, 
+proving things about all formulas using the above technique is essentially the same as doing an induction on degree.
+% 
+The reader is thus free to interpret our proofs in this book in whichever manner seems most congenial.
+
+
+
+%%-------------------------------------
+\section{Models}\label{sec:1-2}
+
+
+
+
+
+%%-------------------------------------
+\section{A Unifying Notation}\label{sec:1-3}
+
+
+
+%%-------------------------------------
+\section{Classical Semantic Tableaus}\label{sec:1-4}
+\origpage{29}
+
+
+In Smullyan [1968] a tree proof procedure for Classical logic was extensively developed. 
+% 
+It has its origins in Gentzen [1935] and traces its descent through Hintikka [1955], Beth [1959] and Smullyan [1966]. 
+% 
+It has the double virtue of being easy to prove things with, 
+and perspicuous to prove things about. 
+% 
+In this section we briefly recall the features of the propositional part of it, 
+then in the next chapter we adapt it to certain modal logics.
+
+
+
+
